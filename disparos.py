@@ -1,13 +1,17 @@
 import requests
+import os
+from dotenv import load_dotenv
 from supabase import create_client
 
-url = "https://ruqmxigenlqqmyxszkff.supabase.co"
-key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1cW14aWdlbmxxcW15eHN6a2ZmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTkyNjgxOCwiZXhwIjoyMDY3NTAyODE4fQ.hK-JKJwFrzJP0KspRA8LhQbxPJwqH7sS4ghJPWagQzE"
-supabase = create_client(url, key)
+load_dotenv()
 
-INSTANCE_ID = "3E3DAC456B9B90A80B14764AFE850DAC"
-INSTANCE_TOKEN = "489DDA3C171E861775DAAADB"
-CLIENT_TOKEN = "F778a0d56c08c47858f52c005956db677S"
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+INSTANCE_ID = os.getenv("INSTANCE_ID")
+INSTANCE_TOKEN = os.getenv("INSTANCE_TOKEN")
+CLIENT_TOKEN = os.getenv("CLIENT_TOKEN")
 
 ZAPI_URL = f"https://api.z-api.io/instances/{INSTANCE_ID}/token/{INSTANCE_TOKEN}/send-text"
 
