@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Disparos</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background: #333; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .enviado { color: green; }
+        .erro { color: red; }
+        .pendente { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>Painel de Disparos</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+            <th>Nome</th><th>Telefone</th><th>Link</th><th>Status</th><th>Data</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for d in dados %}
+            <tr>
+            <td>{{ d.nome or '—' }}</td>
+            <td>{{ d.telefone }}</td>
+            <td><a href="{{ d.link_repositorio or '#' }}">Ver</a></td>
+            <td>{{ d.status|capitalize }}</td>
+            <td>{{ d.created_at or '—' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>
